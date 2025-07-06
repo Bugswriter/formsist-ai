@@ -1,0 +1,10 @@
+.env
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+config.yaml
+port_scanner.log
+processed_uids.txt
+*.log
+portfolio.txt

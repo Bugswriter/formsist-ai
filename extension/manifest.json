@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "Intelligent Form Filler",
+  "version": "1.2",
+  "description": "Captures form-related HTML, sends it to a backend, and fills forms with AI-generated data via extension popup.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "http://localhost:8000/",
+    "http://localhost:8001/"
+  ],
+  "browser_action": {
+    "default_icon": "icons/icon-48.png",
+    "default_title": "Fill Form",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "icons": {
+    "48": "icons/icon-48.png"
+  }
+}
