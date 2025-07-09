@@ -27,6 +27,26 @@ function executeJsOnForm(jsCode) {
     document.head.appendChild(script);
     script.remove();
     displayMessage("Form filled successfully!", "success");
+
+    // After the main script executes, trigger events on all relevant form elements
+    // This is a more general solution if Gemini's output doesn't include event dispatching
+    // For a more robust solution, Gemini should ideally generate calls to a helper function
+    // that sets value AND dispatches events.
+    const formElements = document.querySelectorAll('input:not([type="submit"]):not([type="button"]):not([type="reset"]), textarea, select');
+    formElements.forEach(element => {
+        // Only dispatch if the element actually has a value (i.e., was filled by Gemini's script)
+        if (element.value || element.checked) {
+            // Dispatch 'input' event for text-like inputs and textareas
+            if (element.tagName === 'INPUT' && (element.type === 'text' || element.type === 'email' || element.type === 'password' || element.type === 'number' || element.type === 'tel' || element.type === 'url' || element.type === 'date')) {
+                element.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+            // Dispatch 'change' event for all relevant elements (input, select, textarea, checkbox, radio)
+            element.dispatchEvent(new Event('change', { bubbles: true }));
+            // For some complex frameworks, a blur event might also be necessary
+            // element.dispatchEvent(new Event('blur', { bubbles: true }));
+        }
+    });
+
   } catch (error) {
     console.error("Error executing received JavaScript:", error);
     displayMessage("Error filling form: " + error.message, "error");
@@ -74,18 +94,13 @@ function displayMessage(msg, type) {
     }, 5000);
 }
 
-// New cleaning function to strip unnecessary clutter from form HTML
+// Cleaning function (remains the same)
 function cleanFormHtml(formElement) {
-    // Create a deep clone to avoid modifying the live DOM
     const clonedForm = formElement.cloneNode(true);
-
-    // Tags whose structure (and content) should be preserved
     const formTagsToKeep = new Set([
         'FORM', 'INPUT', 'SELECT', 'TEXTAREA', 'LABEL', 'BUTTON', 'OPTION',
         'OPTGROUP', 'FIELDSET', 'LEGEND', 'DATALIST'
     ]);
-
-    // Attributes to keep on any element, especially form controls
     const attributesToKeep = new Set([
         'name', 'id', 'type', 'value', 'checked', 'selected', 'for', 'placeholder',
         'rows', 'cols', 'min', 'max', 'step', 'pattern', 'title', 'disabled',
@@ -94,25 +109,21 @@ function cleanFormHtml(formElement) {
         'data-qa', 'data-test', 'data-label', 'data-name'
     ]);
 
-    // Iterate through all descendant nodes in reverse order
     const allDescendants = clonedForm.querySelectorAll('*');
     for (let i = allDescendants.length - 1; i >= 0; i--) {
         const el = allDescendants[i];
 
-        // Remove script and style tags entirely
         if (el.tagName === 'SCRIPT' || el.tagName === 'STYLE') {
             el.remove();
             continue;
         }
 
-        // Remove comments
         for (let j = el.childNodes.length - 1; j >= 0; j--) {
             if (el.childNodes[j].nodeType === Node.COMMENT_NODE) {
                 el.childNodes[j].remove();
             }
         }
 
-        // Remove non-whitelisted attributes
         const attributesToRemove = [];
         for (let j = 0; j < el.attributes.length; j++) {
             const attr = el.attributes[j];
@@ -122,7 +133,6 @@ function cleanFormHtml(formElement) {
         }
         attributesToRemove.forEach(attrName => el.removeAttribute(attrName));
 
-        // If the element is NOT a whitelisted form tag, unwrap its text content
         if (!formTagsToKeep.has(el.tagName)) {
             while (el.firstChild) {
                 el.parentNode.insertBefore(el.firstChild, el);
@@ -131,7 +141,6 @@ function cleanFormHtml(formElement) {
         }
     }
 
-    // After processing, normalize whitespace and potentially remove empty non-form tags
     const finalElements = clonedForm.querySelectorAll('*');
     for (let i = finalElements.length - 1; i >= 0; i--) {
         const el = finalElements[i];
@@ -150,23 +159,20 @@ browser.runtime.onMessage.addListener((message) => {
   } else if (message.type === "ERROR_MESSAGE") {
     displayMessage(message.message, "error");
   } else if (message.type === "PERFORM_FILL_ACTION") {
-    sendFormHtmlToBackground(); // Trigger the form sending for filling
+    sendFormHtmlToBackground();
   } else if (message.type === "PERFORM_COPY_ACTION") {
     const form = document.querySelector('form');
     if (form) {
         const cleanedHtml = cleanFormHtml(form);
         browser.runtime.sendMessage({
-            type: "CLEANED_HTML_RESULT", // Send the result back to background script
+            type: "CLEANED_HTML_RESULT",
             htmlContent: cleanedHtml
         });
     } else {
         browser.runtime.sendMessage({
             type: "CLEANED_HTML_RESULT",
-            htmlContent: null // Indicate no form found
+            htmlContent: null
         });
     }
   }
 });
-
-// content.js no longer performs actions automatically on load.
-// It waits for messages from background.js.
