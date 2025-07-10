@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formsist-AI: Medieval Form Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=EB+Garamond&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'EB Garamond', serif;
+      background: #fdf6e3;
+      color: #3e2f1c;
+      background-image: url('https://www.transparenttextures.com/patterns/old-map.png');
+      line-height: 1.8;
+    }
+    header {
+      background: #d4af7f;
+      text-align: center;
+      padding: 2.5em 1em;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 3em;
+      margin-bottom: 0.3em;
+    }
+    header p {
+      font-size: 1.15em;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    section {
+      padding: 3em 1em;
+      max-width: 800px;
+      margin: auto;
+    }
+    h2 {
+      font-family: 'Cinzel', serif;
+      border-bottom: 2px solid #8b5e3c;
+      padding-bottom: 0.3em;
+    }
+    ul, ol {
+      padding-left: 1.5em;
+    }
+    pre {
+      background: #f4eada;
+      padding: 1em;
+      overflow-x: auto;
+      border-left: 4px solid #a67c52;
+    }
+    footer {
+      background: #3e2f1c;
+      color: #fef9e7;
+      text-align: center;
+      padding: 2em 1em;
+      font-size: 0.9em;
+    }
+    a {
+      color: #5b3c11;
+      text-decoration: underline;
+    }
+    .button {
+      display: inline-block;
+      background: #a67c52;
+      color: white;
+      padding: 0.7em 1.5em;
+      border-radius: 10px;
+      text-decoration: none;
+      margin-top: 1em;
+      font-weight: bold;
+    }
+    .button:hover {
+      background: #8b5e3c;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Formsist-AI</h1>
+    <p>An AI assistant extension built to auto-fill HTML forms from your saved information information.</p>
+    <a href="https://github.com/bugswriter/formsist-ai" class="button">View on GitHub</a>
+  </header>
+
+  <section>
+    <h2>📜 About</h2>
+    <p><strong>Formsist-AI</strong> is a smart assistant that uses Google Gemini and LangChain to understand and auto-fill HTML forms based on your personal portfolio. It includes a command-line interface (CLI) and a planned browser extension.</p>
+  </section>
+
+  <section>
+    <h2>🛠 Features</h2>
+    <ul>
+      <li><strong>Intelligent Data Retrieval:</strong> Query your portfolio using natural language.</li>
+      <li><strong>Contextual Responses:</strong> Gemini responds with answers based on your data.</li>
+      <li><strong>Automated Form Filling (Planned):</strong> Browser extension for smart web form population.</li>
+      <li><strong>Modular & Extensible:</strong> Powered by LangChain for easy integration.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🔧 Backend CLI</h2>
+    <p>To set up and use the CLI tool:</p>
+    <pre><code>git clone https://github.com/bugswriter/formsist-ai
+cd formsist-ai/backend</code></pre>
+    <p>Create a virtual environment and install dependencies:</p>
+    <pre><code>python -m venv env
+source env/bin/activate  # On Windows: .\env\Scripts\activate
+pip install -r requirements.txt</code></pre>
+    <p>Set your Gemini API key:</p>
+    <pre><code># Linux/macOS
+export GOOGLE_API_KEY="YOUR_KEY"
+
+# Windows CMD
+set GOOGLE_API_KEY="YOUR_KEY"
+
+# PowerShell
+$env:GOOGLE_API_KEY="YOUR_KEY"</code></pre>
+    <p>Create a <code>portfolio.txt</code> file with your information. Then run:</p>
+    <pre><code>python ask.py portfolio.txt "What's my email address?"</code></pre>
+  </section>
+
+  <section>
+    <h2>🧩 Browser Extension (Planned)</h2>
+    <ul>
+      <li>Will allow interaction directly from browser forms.</li>
+      <li>Uses your saved data to populate input fields.</li>
+      <li>Currently under development.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🤝 Contributing</h2>
+    <p>Contributions are welcome. Feel free to open issues or submit pull requests on GitHub.</p>
+  </section>
+
+  <footer>
+    <p>Licensed under GNU GPL v3. Crafted with ❤️ by <a href="https://github.com/bugswriter">bugswriter</a> · Year MMXXV</p>
+  </footer>
+</body>
+</html>
+
