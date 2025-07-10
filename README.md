@@ -1,112 +1,83 @@
-# Formsist AI
+# 🚀 Formsist AI
 
-A smart assistant that leverages Google Gemini and LangChain to intelligently fill HTML forms based on your personal portfolio information. This repository contains both the backend CLI tool for querying personal data and a planned browser extension for automated form filling.
+A smart AI assistant that uses **Google Gemini** and **LangChain** to auto-fill HTML forms based on your personal portfolio.
 
-## Table of Contents
+🎯 Goal: Make forms feel less like paperwork and more like magic.
 
-* [Features](#features)
-* [Backend CLI](#backend-cli)
-    * [Installation](#backend-installation)
-    * [Usage](#backend-usage)
-* [Browser Extension](#browser-extension)
-    * [Installation](#extension-installation)
-    * [Usage](#extension-usage)
-* [Contributing](#contributing)
-* [License](#license)
+---
 
-## Features
+## ✨ Features
 
-* **Intelligent Data Retrieval:** Query your personal portfolio information using natural language.
-* **Contextual Responses:** Gemini provides answers based on the detailed personal data you supply.
-* **Automated Form Filling (Planned):** A browser extension will utilize the backend's capabilities to intelligently populate web forms.
-* **Modular & Extensible:** Built with LangChain for easy expansion and integration with other tools.
+* 🤖 **AI-powered answers** based on your personal data
+* 🧠 **Context-aware replies** using Gemini + LangChain
+* 🧩 **CLI Tool** to ask questions about your life/resume
+* 🌐 **Planned browser extension** for real-time form-filling
 
-## Backend CLI
+---
 
-The `backend` directory contains the Python CLI tool that interacts with the Gemini API to answer questions about your personal portfolio.
+## 🔧 Backend CLI (Working Now)
 
-### Installation
+> Located in `backend/` folder
 
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/your-username/formsist-ai.git](https://github.com/your-username/formsist-ai.git)
-    cd formsist-ai/backend
-    ```
+### 📥 Install
 
-2.  **Create a virtual environment (recommended):**
-    ```bash
-    python -m venv env
-    source env/bin/activate  # On Windows: .\env\Scripts\activate
-    ```
+```bash
+git clone https://github.com/bugswriter/formsist-ai.git
+cd formsist-ai/backend
 
-3.  **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-    (You'll need to create a `requirements.txt` file with `langchain-google-genai` and `langchain` in it, or you can run `pip install langchain-google-genai langchain` directly.)
+python -m venv env
+source env/bin/activate      # Windows: .\env\Scripts\activate
 
-4.  **Set your Google Gemini API Key:**
-    Obtain your API key from [Google AI Studio](https://aistudio.google.com/app/apikey).
-    Set it as an environment variable:
-    * **Linux/macOS:**
-        ```bash
-        export GOOGLE_API_KEY="YOUR_GEMINI_API_KEY"
-        ```
-    * **Windows (Command Prompt):**
-        ```cmd
-        set GOOGLE_API_KEY="YOUR_GEMINI_API_KEY"
-        ```
-    * **Windows (PowerShell):**
-        ```powershell
-        $env:GOOGLE_API_KEY="YOUR_GEMINI_API_KEY"
-        ```
+pip install langchain langchain-google-genai
+```
 
-### Usage
+### 🔑 Setup Gemini API Key
 
-1.  **Create your portfolio information file:**
-    Inside the `backend/` directory, create a file named `portfolio.txt` (or any other name you prefer). Populate it with your personal details.
+Get it from [Google AI Studio](https://aistudio.google.com/app/apikey)
 
-    **Example `portfolio.txt`:**
-    ```
-    Name: Jane Doe
-    Email: jane.doe@example.com
-    Phone: +1-234-567-8900
-    Employment History:
-    - Senior Software Engineer at InnovateCorp (Jan 2022 - Present) - 2.5 years experience. Led development of cloud-native applications.
-    - Software Developer at StartupX (Jul 2019 - Dec 2021) - 2.5 years experience. Built RESTful APIs.
-    Skills: Python, FastAPI, React, AWS, Docker, Kubernetes, SQL, NoSQL
-    Education: M.S. in Computer Science from Tech University (2019)
-    ```
+```bash
+export GOOGLE_API_KEY="your_key_here"    # Linux/macOS
+# or
+set GOOGLE_API_KEY="your_key_here"       # Windows
+```
 
-2.  **Run the CLI tool:**
-    Navigate to the `backend/` directory in your terminal and execute the `ask.py` script:
-    ```bash
-    python ask.py portfolio.txt "whats my email? & how many years of experience I have?"
-    ```
-    Replace `"portfolio.txt"` with the actual path to your file and the query with your desired question.
+### 📄 Add Portfolio Info
 
-## Browser Extension (Planned)
+Create a file `portfolio.txt` like:
 
-The `extension` directory will contain the code for a browser extension (e.g., for Chrome, Firefox) that will provide a user interface to interact with the backend server for form filling.
+```
+Name: Jane Doe
+Email: jane@example.com
+Skills: Python, FastAPI, React
+Experience: 5 years in web dev
+```
 
-### Installation
+### 💬 Ask Questions
 
-*(Details to be added once the extension is developed)*
-Typically involves:
-1.  Downloading the extension files.
-2.  Loading the unpacked extension in your browser's extension management page.
+```bash
+python ask.py portfolio.txt "What's my email? How much experience do I have?"
+```
 
-### Usage
+---
 
-*(Details to be added once the extension is developed)*
-Expected usage:
-1.  Clicking the extension icon on a web page with a form.
-2.  Initiating the form-filling process, potentially selecting which data to use.
+## 🧩 Browser Extension (Coming Soon)
 
-## Contributing
+A Chrome/Firefox extension that:
 
-Contributions are welcome! Please feel free to open issues or submit pull requests. This is a Free and Open Source Software (FOSS) project.
+* 🖱️ Clicks into forms
+* 🪄 Auto-fills them using your portfolio
+* 📡 Talks to the backend
 
-## License
+---
 
-This project is licensed under the **GNU General Public License v3.0**. See the `LICENSE` file for full details.
+## 🤝 Contributing
+
+Pull requests and ideas welcome!
+Let’s build something useful together 💡
+
+---
+
+## 📜 License
+
+Licensed under **GPL v3**
+See `LICENSE` for details.
