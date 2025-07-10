@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,8 +28,8 @@
     }
     header p {
       font-size: 1.15em;
-      max-width: 750px;
-      margin: 0 auto;
+      max-width: 700px;
+      margin: 0 auto 1em;
     }
     section {
       padding: 3em 1em;
@@ -81,63 +82,84 @@
 <body>
   <header>
     <h1>Formsist-AI</h1>
-    <p>AI driven extension built to auto-fill online forms from your saved information.</p>
+    <p>An AI-powered assistant using Google Gemini and LangChain to intelligently fill HTML forms with personal portfolio data. Includes a Python CLI tool and browser extension.</p>
     <a href="https://github.com/bugswriter/formsist-ai" class="button">View on GitHub</a>
   </header>
 
   <section>
-    <h2>📜 About</h2>
-    <p><strong>Formsist-AI</strong> is a smart assistant that uses Google Gemini and LangChain to understand and auto-fill HTML forms based on your personal portfolio. It includes a command-line interface (CLI) and a planned browser extension.</p>
-  </section>
-
-  <section>
-    <h2>🛠 Features</h2>
+    <h2>📜 Features</h2>
     <ul>
-      <li><strong>Intelligent Data Retrieval:</strong> Query your portfolio using natural language.</li>
-      <li><strong>Contextual Responses:</strong> Gemini responds with answers based on your data.</li>
-      <li><strong>Automated Form Filling (Planned):</strong> Browser extension for smart web form population.</li>
-      <li><strong>Modular & Extensible:</strong> Powered by LangChain for easy integration.</li>
+      <li><strong>Intelligent Data Retrieval:</strong> Query your personal portfolio using natural language.</li>
+      <li><strong>Contextual Responses:</strong> Gemini provides answers based on your supplied personal data.</li>
+      <li><strong>Automated Form Filling:</strong> A browser extension fills out web forms intelligently.</li>
+      <li><strong>Modular & Extensible:</strong> Built using LangChain for seamless integration and scalability.</li>
     </ul>
   </section>
 
   <section>
-    <h2>🔧 Backend CLI</h2>
-    <p>To set up and use the CLI tool:</p>
-    <pre><code>git clone https://github.com/bugswriter/formsist-ai
-cd formsist-ai/backend</code></pre>
-    <p>Create a virtual environment and install dependencies:</p>
-    <pre><code>python -m venv env
+    <h2>🧰 Backend CLI</h2>
+    <p>The backend contains a Python CLI tool to query your personal data using Gemini.</p>
+    <h3>Installation</h3>
+    <pre><code>git clone https://github.com/bugswriter/formsist-ai.git
+cd formsist-ai/backend
+python -m venv env
 source env/bin/activate  # On Windows: .\env\Scripts\activate
 pip install -r requirements.txt</code></pre>
-    <p>Set your Gemini API key:</p>
+
+    <p>Set your Google Gemini API key:</p>
     <pre><code># Linux/macOS
-export GOOGLE_API_KEY="YOUR_KEY"
+export GOOGLE_API_KEY="YOUR_GEMINI_API_KEY"
 
 # Windows CMD
-set GOOGLE_API_KEY="YOUR_KEY"
+set GOOGLE_API_KEY="YOUR_GEMINI_API_KEY"
 
 # PowerShell
-$env:GOOGLE_API_KEY="YOUR_KEY"</code></pre>
-    <p>Create a <code>portfolio.txt</code> file with your information. Then run:</p>
-    <pre><code>python ask.py portfolio.txt "What's my email address?"</code></pre>
+$env:GOOGLE_API_KEY="YOUR_GEMINI_API_KEY"</code></pre>
+
+    <h3>Usage</h3>
+    <p>Create a <code>portfolio.txt</code> with your information. Example:</p>
+    <pre><code>Name: Jane Doe
+Email: jane.doe@example.com
+Phone: +1-234-567-8900
+Employment History:
+- Senior Software Engineer at InnovateCorp (Jan 2022 - Present)
+- Software Developer at StartupX (Jul 2019 - Dec 2021)
+Skills: Python, FastAPI, React, AWS, Docker, Kubernetes
+Education: M.S. in Computer Science (2019)</code></pre>
+
+    <p>Then query it:</p>
+    <pre><code>python ask.py portfolio.txt "whats my email? & how many years of experience I have?"</code></pre>
   </section>
 
   <section>
-    <h2>🧩 Browser Extension (Planned)</h2>
+    <h2>🧩 Browser Extension</h2>
+    <p>The <code>extension</code> directory includes a browser extension (for Chrome/Firefox) that uses the backend to autofill forms.</p>
+    <h3>Installation</h3>
     <ul>
-      <li>Will allow interaction directly from browser forms.</li>
-      <li>Uses your saved data to populate input fields.</li>
-      <li>Currently under development.</li>
+      <li>Download or clone the repository</li>
+      <li>Go to your browser's extension settings</li>
+      <li>Enable developer mode</li>
+      <li>Load the unpacked extension from the <code>extension/</code> directory</li>
+    </ul>
+    <h3>Usage</h3>
+    <ul>
+      <li>Click the extension icon on any form page</li>
+      <li>Select data or let the extension autofill intelligently</li>
     </ul>
   </section>
 
   <section>
     <h2>🤝 Contributing</h2>
-    <p>Contributions are welcome. Feel free to open issues or submit pull requests on GitHub.</p>
+    <p>Contributions are welcome! Feel free to open issues or submit pull requests. This is a Free and Open Source Software (FOSS) project.</p>
+  </section>
+
+  <section>
+    <h2>📜 License</h2>
+    <p>This project is licensed under the <strong>GNU General Public License v3.0</strong>. See the <code>LICENSE</code> file for full details.</p>
   </section>
 
   <footer>
-    <p>Licensed under GNU GPL v3. Crafted with ❤️ by <a href="https://github.com/bugswriter">bugswriter</a> · Year 2025</p>
+    <p>Crafted with ❤️ by <a href="https://github.com/bugswriter">bugswriter</a> · Year 2025·</p>
   </footer>
 </body>
 </html>
